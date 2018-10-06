@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+    <% var subtitle = "Permission levels" %>
+    <% include ../partials/head %>
+
+    <body>
+      <% include ../partials/nav %>
+      
+      <div class=container>
+        
+        <%- subtitle ? "<br><h1>"+subtitle+"</h1>" : "" %>
+
+        <% for (var grp of client.lvls) { %>
+          <h4><%= grp.name %> [<%= grp.level %>]</h4>
+          <p><%- new Converter().makeHtml(grp.info) %></p>
+        <% } %>
+
+      </div>
+      
+        <br />
+        <% include ../partials/footer %>
+        <% include ../partials/scripts %>
+      <style>
+        .table-commands {
+          width: 100% !important;
+        }
+        .table-responsive {
+          max-width: 100% !important;
+        }
+      </style>
+    </body>
+
+</html>

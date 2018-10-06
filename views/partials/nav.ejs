@@ -1,0 +1,20 @@
+<style>
+  .context-dark, .bg-gray-dark, .bg-primary {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #007AFF;
+  }
+</style>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Koopa Bot</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+      <li class="nav-item"><a class="nav-link"href="/about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="/cmds">Commands <span class="badge badge-warning command-num"><%= client.registry.commands.size %></span></a></li>
+      <li class="nav-item"><a class="nav-link" href="/perms">Permission levels</a></li>
+  </div>
+</nav>

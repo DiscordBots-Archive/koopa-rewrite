@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+    <% var subtitle = "Commands" %>
+    <% include ../partials/head %>
+
+    <body>
+      <% include ../partials/nav %>
+      
+      <div class=container>
+        
+        <%- subtitle ? "<br><h1>"+subtitle+"</h1>" : "" %>
+        
+        <% var params = getParams(url.split('?')[1]) %>
+        
+        <% for (var grp of client.registry.groups) { %>
+        <% if (params.perm && grp[1].commands.filter(cmd => params.perm >= cmd.minPerm).size == 0) continue %>
+          <h2 id="<%= grp[1].id %>"><%= grp[1].name %></h2>
+          <h4>[<%= grp[1].id %>]</h4>
+          <br>
+          <table class="table table-hover table-commands table-responsive">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Aliases</th>
+              <th scope="col">Description</th>
+              <th scope="col">Minimum permission level</th>
+            </tr>
+            <tbody>
+              <% var cmds = params.perm ? grp[1].commands.filter(cmd => params.perm >= cmd.minPerm) : grp[1].commands %>
+              <% for (var cmd of cmds) { %>
+                <tr>
+                  <th scope="row"><%= cmd[1].name %></th>
+                  <td><%= cmd[1].aliases.join(", ") %></td>
+                  <td><%= cmd[1].description %><%- cmd[1].details ? `<br /><br />${cmd[1].details}` : "" %></td>
+                  <td><%= cmd[1].minPerm ? `${client.util.getPerm(cmd[1].minPerm)} [${cmd[1].minPerm}]` : `${client.util.getPerm(1)} [1]` %></td>
+                  <!--<%= `${cmd[1].groupID}:${cmd[1].memberName}` %>-->
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        <% } %>
+
+      </div>
+      
+        <br />
+        <% include ../partials/footer %>
+        <% include ../partials/scripts %>
+      <style>
+        .table-commands {
+          width: 100% !important;
+        }
+        .table-responsive {
+          max-width: 100% !important;
+        }
+      </style>
+    </body>
+
+</html>

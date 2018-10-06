@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <% var subtitle = "Client Object" %>
+  <% include ../partials/head %>
+  
+  <body>
+    
+    <% include ../partials/nav %>
+    
+    <div class=container>
+      
+      <%- subtitle ? "<br><h1>"+subtitle+"</h1>" : "" %>
+    
+    <% var code = util.inspect(client, {compact: false, depth: 0}) %>
+    <% var lang = "js" %>
+    <% include ../partials/source %>
+    </div>
+    <br />
+    <% include ../partials/footer %>
+    <% include ../partials/scripts %>
+  </body>
+</html>
